@@ -350,7 +350,7 @@ int master_loop(char **argv, char **environ) {
 
 	struct uwsgi_rb_timer *min_timeout;
 	struct uwsgi_rbtree *rb_timers = uwsgi_init_rb_timer();
-	uwsgi_log("test log test log");
+	uwsgi_log("test log test log\n");
 	if (uwsgi.procname_master) {
 		uwsgi_set_processname(uwsgi.procname_master);
 	}

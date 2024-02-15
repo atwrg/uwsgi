@@ -299,7 +299,7 @@ void uwsgi_manage_command_cron(time_t now) {
 						if (pid >= 0) {
 							current_cron->pid = pid;
 							current_cron->started_at = now;
-							uwsgi_log_verbose("[uwsgi-cron] running \"%s\" (pid %d)\n", current_cron->command, current_cron->pid);
+							uwsgi_log("[uwsgi-cron] running \"%s\" (pid %d)\n", current_cron->command, current_cron->pid);
 							if (current_cron->mercy) {
 								//uwsgi_cron->mercy can be negative to inform master that harakiri should be disabled for this cron
 								if (current_cron->mercy > 0)
