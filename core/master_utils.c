@@ -1677,7 +1677,10 @@ void trigger_harakiri(int i) {
 
 		uwsgi_dump_worker(i, "HARAKIRI");
 		if (uwsgi.workers[i].pending_harakiri == 0 && uwsgi.harakiri_graceful_timeout > 0) {
-			kill(-1, uwsgi.harakiri_graceful_signal);
+			for(j=0;j<uwsgi.cores;j++) {
+				pthread_kill(uwsgi.workers[i].cores[j].thread_id, uwsgi.harakiri_graceful_signal);
+			}
+			// kill(uwsgi.workers[i].pid, uwsgi.harakiri_graceful_signal);
 		} else {
 			kill(uwsgi.workers[i].pid, SIGKILL);
 		}
